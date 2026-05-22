@@ -1,0 +1,3187 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+src/
+  assets/
+    globals.css
+    index.css
+    tailwind-built.css
+  client/
+    components/
+      ui/
+        badge.tsx
+        button.tsx
+        input.tsx
+        separator.tsx
+        tabs.tsx
+    features/
+      mail/
+        content.tsx
+        inbox.tsx
+        list-item.tsx
+        sidebar.tsx
+        topbar.tsx
+    hooks/
+      useWebSocket.ts
+    lib/
+      format.ts
+      notification.ts
+      utils.ts
+    index.html
+    root.tsx
+    types.ts
+  server/
+    index.ts
+    lib.ts
+    smtp.ts
+    state.ts
+.gitignore
+bun-env.d.ts
+components.json
+mailbuu.ts
+package.json
+README.md
+tsconfig.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="src/assets/globals.css">
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+</file>
+
+<file path="src/assets/index.css">
+@import "./globals.css";
+
+@layer base {
+  :root {
+    @apply font-sans;
+  }
+
+  body {
+    @apply grid place-items-center min-w-[320px] min-h-screen relative m-0 bg-background text-foreground overflow-hidden; 
+  }
+  #root {
+    @apply w-full h-full p-1;
+  }
+}
+</file>
+
+<file path="src/assets/tailwind-built.css">
+/*! tailwindcss v4.3.0 | MIT License | https://tailwindcss.com */
+@layer properties;
+@layer theme, base, components, utilities;
+@layer theme {
+  :root, :host {
+    --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+    --color-red-100: oklch(93.6% 0.032 17.717);
+    --color-red-500: oklch(63.7% 0.237 25.331);
+    --color-red-700: oklch(50.5% 0.213 27.518);
+    --color-green-100: oklch(96.2% 0.044 156.743);
+    --color-green-400: oklch(79.2% 0.209 151.711);
+    --color-green-500: oklch(72.3% 0.219 149.579);
+    --color-green-700: oklch(52.7% 0.154 150.069);
+    --color-blue-50: oklch(97% 0.014 254.604);
+    --color-blue-500: oklch(62.3% 0.214 259.815);
+    --color-slate-400: oklch(70.4% 0.04 256.788);
+    --color-slate-900: oklch(20.8% 0.042 265.755);
+    --color-gray-50: oklch(98.5% 0.002 247.839);
+    --color-gray-100: oklch(96.7% 0.003 264.542);
+    --color-gray-200: oklch(92.8% 0.006 264.531);
+    --color-gray-300: oklch(87.2% 0.01 258.338);
+    --color-gray-400: oklch(70.7% 0.022 261.325);
+    --color-gray-500: oklch(55.1% 0.027 264.364);
+    --color-gray-600: oklch(44.6% 0.03 256.802);
+    --color-gray-800: oklch(27.8% 0.033 256.848);
+    --color-gray-900: oklch(21% 0.034 264.665);
+    --color-white: #fff;
+    --spacing: 0.25rem;
+    --text-xs: 0.75rem;
+    --text-xs--line-height: calc(1 / 0.75);
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
+    --text-base: 1rem;
+    --text-base--line-height: calc(1.5 / 1);
+    --text-4xl: 2.25rem;
+    --text-4xl--line-height: calc(2.5 / 2.25);
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --leading-snug: 1.375;
+    --leading-relaxed: 1.625;
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+    --animate-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --default-font-family: var(--font-sans);
+    --default-mono-font-family: var(--font-mono);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+  }
+}
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid;
+  }
+  html, :host {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
+    font-feature-settings: var(--default-font-feature-settings, normal);
+    font-variation-settings: var(--default-font-variation-settings, normal);
+    -webkit-tap-highlight-color: transparent;
+  }
+  hr {
+    height: 0;
+    color: inherit;
+    border-top-width: 1px;
+  }
+  abbr:where([title]) {
+    -webkit-text-decoration: underline dotted;
+    text-decoration: underline dotted;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  a {
+    color: inherit;
+    -webkit-text-decoration: inherit;
+    text-decoration: inherit;
+  }
+  b, strong {
+    font-weight: bolder;
+  }
+  code, kbd, samp, pre {
+    font-family: var(--default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+    font-feature-settings: var(--default-mono-font-feature-settings, normal);
+    font-variation-settings: var(--default-mono-font-variation-settings, normal);
+    font-size: 1em;
+  }
+  small {
+    font-size: 80%;
+  }
+  sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  sub {
+    bottom: -0.25em;
+  }
+  sup {
+    top: -0.5em;
+  }
+  table {
+    text-indent: 0;
+    border-color: inherit;
+    border-collapse: collapse;
+  }
+  :-moz-focusring {
+    outline: auto;
+  }
+  progress {
+    vertical-align: baseline;
+  }
+  summary {
+    display: list-item;
+  }
+  ol, ul, menu {
+    list-style: none;
+  }
+  img, svg, video, canvas, audio, iframe, embed, object {
+    display: block;
+    vertical-align: middle;
+  }
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  button, input, select, optgroup, textarea, ::file-selector-button {
+    font: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    border-radius: 0;
+    background-color: transparent;
+    opacity: 1;
+  }
+  :where(select:is([multiple], [size])) optgroup {
+    font-weight: bolder;
+  }
+  :where(select:is([multiple], [size])) optgroup option {
+    padding-inline-start: 20px;
+  }
+  ::file-selector-button {
+    margin-inline-end: 4px;
+  }
+  ::placeholder {
+    opacity: 1;
+  }
+  @supports (not (-webkit-appearance: -apple-pay-button))  or (contain-intrinsic-size: 1px) {
+    ::placeholder {
+      color: currentcolor;
+      @supports (color: color-mix(in lab, red, red)) {
+        color: color-mix(in oklab, currentcolor 50%, transparent);
+      }
+    }
+  }
+  textarea {
+    resize: vertical;
+  }
+  ::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  ::-webkit-date-and-time-value {
+    min-height: 1lh;
+    text-align: inherit;
+  }
+  ::-webkit-datetime-edit {
+    display: inline-flex;
+  }
+  ::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+  ::-webkit-datetime-edit, ::-webkit-datetime-edit-year-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-minute-field, ::-webkit-datetime-edit-second-field, ::-webkit-datetime-edit-millisecond-field, ::-webkit-datetime-edit-meridiem-field {
+    padding-block: 0;
+  }
+  ::-webkit-calendar-picker-indicator {
+    line-height: 1;
+  }
+  :-moz-ui-invalid {
+    box-shadow: none;
+  }
+  button, input:where([type="button"], [type="reset"], [type="submit"]), ::file-selector-button {
+    appearance: button;
+  }
+  ::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+    height: auto;
+  }
+  [hidden]:where(:not([hidden="until-found"])) {
+    display: none !important;
+  }
+}
+@layer utilities {
+  .absolute {
+    position: absolute;
+  }
+  .relative {
+    position: relative;
+  }
+  .static {
+    position: static;
+  }
+  .top-2\.5 {
+    top: calc(var(--spacing) * 2.5);
+  }
+  .left-2\.5 {
+    left: calc(var(--spacing) * 2.5);
+  }
+  .m-0 {
+    margin: calc(var(--spacing) * 0);
+  }
+  .mt-0\.5 {
+    margin-top: calc(var(--spacing) * 0.5);
+  }
+  .mb-1 {
+    margin-bottom: calc(var(--spacing) * 1);
+  }
+  .mb-3 {
+    margin-bottom: calc(var(--spacing) * 3);
+  }
+  .contents {
+    display: contents;
+  }
+  .flex {
+    display: flex;
+  }
+  .grid {
+    display: grid;
+  }
+  .inline {
+    display: inline;
+  }
+  .inline-flex {
+    display: inline-flex;
+  }
+  .size-6 {
+    width: calc(var(--spacing) * 6);
+    height: calc(var(--spacing) * 6);
+  }
+  .size-8 {
+    width: calc(var(--spacing) * 8);
+    height: calc(var(--spacing) * 8);
+  }
+  .size-9 {
+    width: calc(var(--spacing) * 9);
+    height: calc(var(--spacing) * 9);
+  }
+  .size-10 {
+    width: calc(var(--spacing) * 10);
+    height: calc(var(--spacing) * 10);
+  }
+  .h-1\.5 {
+    height: calc(var(--spacing) * 1.5);
+  }
+  .h-2 {
+    height: calc(var(--spacing) * 2);
+  }
+  .h-3\.5 {
+    height: calc(var(--spacing) * 3.5);
+  }
+  .h-6 {
+    height: calc(var(--spacing) * 6);
+  }
+  .h-8 {
+    height: calc(var(--spacing) * 8);
+  }
+  .h-9 {
+    height: calc(var(--spacing) * 9);
+  }
+  .h-10 {
+    height: calc(var(--spacing) * 10);
+  }
+  .h-12 {
+    height: calc(var(--spacing) * 12);
+  }
+  .h-14 {
+    height: calc(var(--spacing) * 14);
+  }
+  .h-32 {
+    height: calc(var(--spacing) * 32);
+  }
+  .h-\[calc\(100\%-1px\)\] {
+    height: calc(100% - 1px);
+  }
+  .h-full {
+    height: 100%;
+  }
+  .h-screen {
+    height: 100vh;
+  }
+  .min-h-0 {
+    min-height: calc(var(--spacing) * 0);
+  }
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  .w-1\.5 {
+    width: calc(var(--spacing) * 1.5);
+  }
+  .w-2 {
+    width: calc(var(--spacing) * 2);
+  }
+  .w-3\.5 {
+    width: calc(var(--spacing) * 3.5);
+  }
+  .w-12 {
+    width: calc(var(--spacing) * 12);
+  }
+  .w-16 {
+    width: calc(var(--spacing) * 16);
+  }
+  .w-72 {
+    width: calc(var(--spacing) * 72);
+  }
+  .w-fit {
+    width: fit-content;
+  }
+  .w-full {
+    width: 100%;
+  }
+  .max-w-40 {
+    max-width: calc(var(--spacing) * 40);
+  }
+  .min-w-0 {
+    min-width: calc(var(--spacing) * 0);
+  }
+  .min-w-\[320px\] {
+    min-width: 320px;
+  }
+  .flex-1 {
+    flex: 1;
+  }
+  .shrink-0 {
+    flex-shrink: 0;
+  }
+  .animate-ping {
+    animation: var(--animate-ping);
+  }
+  .flex-col {
+    flex-direction: column;
+  }
+  .place-items-center {
+    place-items: center;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .items-start {
+    align-items: flex-start;
+  }
+  .justify-between {
+    justify-content: space-between;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .gap-0 {
+    gap: calc(var(--spacing) * 0);
+  }
+  .gap-1 {
+    gap: calc(var(--spacing) * 1);
+  }
+  .gap-1\.5 {
+    gap: calc(var(--spacing) * 1.5);
+  }
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
+  }
+  .gap-3 {
+    gap: calc(var(--spacing) * 3);
+  }
+  .space-y-0\.5 {
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 0.5) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 0.5) * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
+  .truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  .overflow-y-auto {
+    overflow-y: auto;
+  }
+  .rounded-full {
+    border-radius: calc(infinity * 1px);
+  }
+  .rounded-lg {
+    border-radius: var(--radius);
+  }
+  .rounded-md {
+    border-radius: calc(var(--radius) - 2px);
+  }
+  .rounded-none {
+    border-radius: 0;
+  }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
+  .border-r {
+    border-right-style: var(--tw-border-style);
+    border-right-width: 1px;
+  }
+  .border-b {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 1px;
+  }
+  .border-b-2 {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 2px;
+  }
+  .border-l-2 {
+    border-left-style: var(--tw-border-style);
+    border-left-width: 2px;
+  }
+  .border-border {
+    border-color: var(--border);
+  }
+  .border-gray-100 {
+    border-color: var(--color-gray-100);
+  }
+  .border-gray-200 {
+    border-color: var(--color-gray-200);
+  }
+  .border-input {
+    border-color: var(--input);
+  }
+  .border-transparent {
+    border-color: transparent;
+  }
+  .border-l-blue-500 {
+    border-left-color: var(--color-blue-500);
+  }
+  .bg-background {
+    background-color: var(--background);
+  }
+  .bg-blue-50 {
+    background-color: var(--color-blue-50);
+  }
+  .bg-blue-500 {
+    background-color: var(--color-blue-500);
+  }
+  .bg-border {
+    background-color: var(--border);
+  }
+  .bg-destructive {
+    background-color: var(--destructive);
+  }
+  .bg-gray-50 {
+    background-color: var(--color-gray-50);
+  }
+  .bg-green-100 {
+    background-color: var(--color-green-100);
+  }
+  .bg-green-400 {
+    background-color: var(--color-green-400);
+  }
+  .bg-green-500 {
+    background-color: var(--color-green-500);
+  }
+  .bg-muted {
+    background-color: var(--muted);
+  }
+  .bg-primary {
+    background-color: var(--primary);
+  }
+  .bg-red-100 {
+    background-color: var(--color-red-100);
+  }
+  .bg-red-500 {
+    background-color: var(--color-red-500);
+  }
+  .bg-secondary {
+    background-color: var(--secondary);
+  }
+  .bg-slate-400 {
+    background-color: var(--color-slate-400);
+  }
+  .bg-transparent {
+    background-color: transparent;
+  }
+  .bg-white {
+    background-color: var(--color-white);
+  }
+  .p-0 {
+    padding: calc(var(--spacing) * 0);
+  }
+  .p-4 {
+    padding: calc(var(--spacing) * 4);
+  }
+  .p-\[3px\] {
+    padding: 3px;
+  }
+  .px-2 {
+    padding-inline: calc(var(--spacing) * 2);
+  }
+  .px-2\.5 {
+    padding-inline: calc(var(--spacing) * 2.5);
+  }
+  .px-3 {
+    padding-inline: calc(var(--spacing) * 3);
+  }
+  .px-4 {
+    padding-inline: calc(var(--spacing) * 4);
+  }
+  .px-6 {
+    padding-inline: calc(var(--spacing) * 6);
+  }
+  .py-0\.5 {
+    padding-block: calc(var(--spacing) * 0.5);
+  }
+  .py-1 {
+    padding-block: calc(var(--spacing) * 1);
+  }
+  .py-2 {
+    padding-block: calc(var(--spacing) * 2);
+  }
+  .py-3 {
+    padding-block: calc(var(--spacing) * 3);
+  }
+  .py-4 {
+    padding-block: calc(var(--spacing) * 4);
+  }
+  .py-5 {
+    padding-block: calc(var(--spacing) * 5);
+  }
+  .pl-8 {
+    padding-left: calc(var(--spacing) * 8);
+  }
+  .text-left {
+    text-align: left;
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+  .text-4xl {
+    font-size: var(--text-4xl);
+    line-height: var(--tw-leading, var(--text-4xl--line-height));
+  }
+  .text-base {
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
+  }
+  .text-sm {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+  .text-xs {
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
+  }
+  .text-\[11px\] {
+    font-size: 11px;
+  }
+  .leading-none {
+    --tw-leading: 1;
+    line-height: 1;
+  }
+  .leading-relaxed {
+    --tw-leading: var(--leading-relaxed);
+    line-height: var(--leading-relaxed);
+  }
+  .leading-snug {
+    --tw-leading: var(--leading-snug);
+    line-height: var(--leading-snug);
+  }
+  .font-medium {
+    --tw-font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-medium);
+  }
+  .font-semibold {
+    --tw-font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-semibold);
+  }
+  .whitespace-nowrap {
+    white-space: nowrap;
+  }
+  .whitespace-pre-wrap {
+    white-space: pre-wrap;
+  }
+  .text-foreground {
+    color: var(--foreground);
+  }
+  .text-foreground\/60 {
+    color: var(--foreground);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--foreground) 60%, transparent);
+    }
+  }
+  .text-gray-300 {
+    color: var(--color-gray-300);
+  }
+  .text-gray-400 {
+    color: var(--color-gray-400);
+  }
+  .text-gray-600 {
+    color: var(--color-gray-600);
+  }
+  .text-gray-800 {
+    color: var(--color-gray-800);
+  }
+  .text-gray-900 {
+    color: var(--color-gray-900);
+  }
+  .text-green-700 {
+    color: var(--color-green-700);
+  }
+  .text-muted-foreground {
+    color: var(--muted-foreground);
+  }
+  .text-primary {
+    color: var(--primary);
+  }
+  .text-primary-foreground {
+    color: var(--primary-foreground);
+  }
+  .text-red-700 {
+    color: var(--color-red-700);
+  }
+  .text-secondary-foreground {
+    color: var(--secondary-foreground);
+  }
+  .text-slate-900 {
+    color: var(--color-slate-900);
+  }
+  .text-white {
+    color: var(--color-white);
+  }
+  .underline-offset-4 {
+    text-underline-offset: 4px;
+  }
+  .opacity-75 {
+    opacity: 75%;
+  }
+  .shadow-xs {
+    --tw-shadow: 0 1px 2px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.05));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
+  .filter {
+    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+  }
+  .transition-\[color\,box-shadow\] {
+    transition-property: color,box-shadow;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-colors {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .outline-none {
+    --tw-outline-style: none;
+    outline-style: none;
+  }
+  .group-data-\[orientation\=horizontal\]\/tabs\:h-9 {
+    &:is(:where(.group\/tabs)[data-orientation="horizontal"] *) {
+      height: calc(var(--spacing) * 9);
+    }
+  }
+  .group-data-\[orientation\=vertical\]\/tabs\:h-fit {
+    &:is(:where(.group\/tabs)[data-orientation="vertical"] *) {
+      height: fit-content;
+    }
+  }
+  .group-data-\[orientation\=vertical\]\/tabs\:w-full {
+    &:is(:where(.group\/tabs)[data-orientation="vertical"] *) {
+      width: 100%;
+    }
+  }
+  .group-data-\[orientation\=vertical\]\/tabs\:flex-col {
+    &:is(:where(.group\/tabs)[data-orientation="vertical"] *) {
+      flex-direction: column;
+    }
+  }
+  .group-data-\[orientation\=vertical\]\/tabs\:justify-start {
+    &:is(:where(.group\/tabs)[data-orientation="vertical"] *) {
+      justify-content: flex-start;
+    }
+  }
+  .group-data-\[variant\=line\]\/tabs-list\:bg-transparent {
+    &:is(:where(.group\/tabs-list)[data-variant="line"] *) {
+      background-color: transparent;
+    }
+  }
+  .selection\:bg-primary {
+    & *::selection {
+      background-color: var(--primary);
+    }
+    &::selection {
+      background-color: var(--primary);
+    }
+  }
+  .selection\:text-primary-foreground {
+    & *::selection {
+      color: var(--primary-foreground);
+    }
+    &::selection {
+      color: var(--primary-foreground);
+    }
+  }
+  .file\:inline-flex {
+    &::file-selector-button {
+      display: inline-flex;
+    }
+  }
+  .file\:h-7 {
+    &::file-selector-button {
+      height: calc(var(--spacing) * 7);
+    }
+  }
+  .file\:border-0 {
+    &::file-selector-button {
+      border-style: var(--tw-border-style);
+      border-width: 0px;
+    }
+  }
+  .file\:bg-transparent {
+    &::file-selector-button {
+      background-color: transparent;
+    }
+  }
+  .file\:text-sm {
+    &::file-selector-button {
+      font-size: var(--text-sm);
+      line-height: var(--tw-leading, var(--text-sm--line-height));
+    }
+  }
+  .file\:font-medium {
+    &::file-selector-button {
+      --tw-font-weight: var(--font-weight-medium);
+      font-weight: var(--font-weight-medium);
+    }
+  }
+  .file\:text-foreground {
+    &::file-selector-button {
+      color: var(--foreground);
+    }
+  }
+  .placeholder\:text-muted-foreground {
+    &::placeholder {
+      color: var(--muted-foreground);
+    }
+  }
+  .after\:absolute {
+    &::after {
+      content: var(--tw-content);
+      position: absolute;
+    }
+  }
+  .after\:bg-foreground {
+    &::after {
+      content: var(--tw-content);
+      background-color: var(--foreground);
+    }
+  }
+  .after\:opacity-0 {
+    &::after {
+      content: var(--tw-content);
+      opacity: 0%;
+    }
+  }
+  .after\:transition-opacity {
+    &::after {
+      content: var(--tw-content);
+      transition-property: opacity;
+      transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+      transition-duration: var(--tw-duration, var(--default-transition-duration));
+    }
+  }
+  .group-data-\[orientation\=horizontal\]\/tabs\:after\:inset-x-0 {
+    &:is(:where(.group\/tabs)[data-orientation="horizontal"] *) {
+      &::after {
+        content: var(--tw-content);
+        inset-inline: calc(var(--spacing) * 0);
+      }
+    }
+  }
+  .group-data-\[orientation\=horizontal\]\/tabs\:after\:bottom-\[-5px\] {
+    &:is(:where(.group\/tabs)[data-orientation="horizontal"] *) {
+      &::after {
+        content: var(--tw-content);
+        bottom: -5px;
+      }
+    }
+  }
+  .group-data-\[orientation\=horizontal\]\/tabs\:after\:h-0\.5 {
+    &:is(:where(.group\/tabs)[data-orientation="horizontal"] *) {
+      &::after {
+        content: var(--tw-content);
+        height: calc(var(--spacing) * 0.5);
+      }
+    }
+  }
+  .group-data-\[orientation\=vertical\]\/tabs\:after\:inset-y-0 {
+    &:is(:where(.group\/tabs)[data-orientation="vertical"] *) {
+      &::after {
+        content: var(--tw-content);
+        inset-block: calc(var(--spacing) * 0);
+      }
+    }
+  }
+  .group-data-\[orientation\=vertical\]\/tabs\:after\:-right-1 {
+    &:is(:where(.group\/tabs)[data-orientation="vertical"] *) {
+      &::after {
+        content: var(--tw-content);
+        right: calc(var(--spacing) * -1);
+      }
+    }
+  }
+  .group-data-\[orientation\=vertical\]\/tabs\:after\:w-0\.5 {
+    &:is(:where(.group\/tabs)[data-orientation="vertical"] *) {
+      &::after {
+        content: var(--tw-content);
+        width: calc(var(--spacing) * 0.5);
+      }
+    }
+  }
+  .hover\:bg-accent {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--accent);
+      }
+    }
+  }
+  .hover\:bg-destructive\/90 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--destructive);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--destructive) 90%, transparent);
+        }
+      }
+    }
+  }
+  .hover\:bg-gray-50 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-gray-50);
+      }
+    }
+  }
+  .hover\:bg-primary\/90 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--primary);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--primary) 90%, transparent);
+        }
+      }
+    }
+  }
+  .hover\:bg-secondary\/80 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--secondary);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--secondary) 80%, transparent);
+        }
+      }
+    }
+  }
+  .hover\:text-accent-foreground {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--accent-foreground);
+      }
+    }
+  }
+  .hover\:text-foreground {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--foreground);
+      }
+    }
+  }
+  .hover\:underline {
+    &:hover {
+      @media (hover: hover) {
+        text-decoration-line: underline;
+      }
+    }
+  }
+  .focus\:outline-none {
+    &:focus {
+      --tw-outline-style: none;
+      outline-style: none;
+    }
+  }
+  .focus-visible\:border-ring {
+    &:focus-visible {
+      border-color: var(--ring);
+    }
+  }
+  .focus-visible\:ring-1 {
+    &:focus-visible {
+      --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    }
+  }
+  .focus-visible\:ring-\[3px\] {
+    &:focus-visible {
+      --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    }
+  }
+  .focus-visible\:ring-destructive\/20 {
+    &:focus-visible {
+      --tw-ring-color: var(--destructive);
+      @supports (color: color-mix(in lab, red, red)) {
+        --tw-ring-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+      }
+    }
+  }
+  .focus-visible\:ring-ring\/50 {
+    &:focus-visible {
+      --tw-ring-color: var(--ring);
+      @supports (color: color-mix(in lab, red, red)) {
+        --tw-ring-color: color-mix(in oklab, var(--ring) 50%, transparent);
+      }
+    }
+  }
+  .focus-visible\:outline-1 {
+    &:focus-visible {
+      outline-style: var(--tw-outline-style);
+      outline-width: 1px;
+    }
+  }
+  .focus-visible\:outline-ring {
+    &:focus-visible {
+      outline-color: var(--ring);
+    }
+  }
+  .disabled\:pointer-events-none {
+    &:disabled {
+      pointer-events: none;
+    }
+  }
+  .disabled\:cursor-not-allowed {
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+  .disabled\:opacity-50 {
+    &:disabled {
+      opacity: 50%;
+    }
+  }
+  .has-\[\>svg\]\:px-1\.5 {
+    &:has(>svg) {
+      padding-inline: calc(var(--spacing) * 1.5);
+    }
+  }
+  .has-\[\>svg\]\:px-2\.5 {
+    &:has(>svg) {
+      padding-inline: calc(var(--spacing) * 2.5);
+    }
+  }
+  .has-\[\>svg\]\:px-3 {
+    &:has(>svg) {
+      padding-inline: calc(var(--spacing) * 3);
+    }
+  }
+  .has-\[\>svg\]\:px-4 {
+    &:has(>svg) {
+      padding-inline: calc(var(--spacing) * 4);
+    }
+  }
+  .aria-invalid\:border-destructive {
+    &[aria-invalid="true"] {
+      border-color: var(--destructive);
+    }
+  }
+  .aria-invalid\:ring-destructive\/20 {
+    &[aria-invalid="true"] {
+      --tw-ring-color: var(--destructive);
+      @supports (color: color-mix(in lab, red, red)) {
+        --tw-ring-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+      }
+    }
+  }
+  .data-\[orientation\=horizontal\]\:h-px {
+    &[data-orientation="horizontal"] {
+      height: 1px;
+    }
+  }
+  .data-\[orientation\=horizontal\]\:w-full {
+    &[data-orientation="horizontal"] {
+      width: 100%;
+    }
+  }
+  .data-\[orientation\=horizontal\]\:flex-col {
+    &[data-orientation="horizontal"] {
+      flex-direction: column;
+    }
+  }
+  .data-\[orientation\=vertical\]\:h-full {
+    &[data-orientation="vertical"] {
+      height: 100%;
+    }
+  }
+  .data-\[orientation\=vertical\]\:w-px {
+    &[data-orientation="vertical"] {
+      width: 1px;
+    }
+  }
+  .data-\[state\=active\]\:border-gray-500 {
+    &[data-state="active"] {
+      border-color: var(--color-gray-500);
+    }
+  }
+  .data-\[state\=active\]\:bg-background {
+    &[data-state="active"] {
+      background-color: var(--background);
+    }
+  }
+  .data-\[state\=active\]\:bg-transparent {
+    &[data-state="active"] {
+      background-color: transparent;
+    }
+  }
+  .data-\[state\=active\]\:text-foreground {
+    &[data-state="active"] {
+      color: var(--foreground);
+    }
+  }
+  .data-\[state\=active\]\:text-gray-600 {
+    &[data-state="active"] {
+      color: var(--color-gray-600);
+    }
+  }
+  .group-data-\[variant\=default\]\/tabs-list\:data-\[state\=active\]\:shadow-sm {
+    &:is(:where(.group\/tabs-list)[data-variant="default"] *) {
+      &[data-state="active"] {
+        --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+        box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+      }
+    }
+  }
+  .group-data-\[variant\=line\]\/tabs-list\:data-\[state\=active\]\:bg-transparent {
+    &:is(:where(.group\/tabs-list)[data-variant="line"] *) {
+      &[data-state="active"] {
+        background-color: transparent;
+      }
+    }
+  }
+  .group-data-\[variant\=line\]\/tabs-list\:data-\[state\=active\]\:shadow-none {
+    &:is(:where(.group\/tabs-list)[data-variant="line"] *) {
+      &[data-state="active"] {
+        --tw-shadow: 0 0 #0000;
+        box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+      }
+    }
+  }
+  .group-data-\[variant\=line\]\/tabs-list\:data-\[state\=active\]\:after\:opacity-100 {
+    &:is(:where(.group\/tabs-list)[data-variant="line"] *) {
+      &[data-state="active"] {
+        &::after {
+          content: var(--tw-content);
+          opacity: 100%;
+        }
+      }
+    }
+  }
+  .data-\[variant\=line\]\:rounded-none {
+    &[data-variant="line"] {
+      border-radius: 0;
+    }
+  }
+  .md\:text-sm {
+    @media (width >= 48rem) {
+      font-size: var(--text-sm);
+      line-height: var(--tw-leading, var(--text-sm--line-height));
+    }
+  }
+  .dark\:border-input {
+    &:is(.dark *) {
+      border-color: var(--input);
+    }
+  }
+  .dark\:bg-destructive\/60 {
+    &:is(.dark *) {
+      background-color: var(--destructive);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--destructive) 60%, transparent);
+      }
+    }
+  }
+  .dark\:bg-input\/30 {
+    &:is(.dark *) {
+      background-color: var(--input);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--input) 30%, transparent);
+      }
+    }
+  }
+  .dark\:text-muted-foreground {
+    &:is(.dark *) {
+      color: var(--muted-foreground);
+    }
+  }
+  .dark\:hover\:bg-accent\/50 {
+    &:is(.dark *) {
+      &:hover {
+        @media (hover: hover) {
+          background-color: var(--accent);
+          @supports (color: color-mix(in lab, red, red)) {
+            background-color: color-mix(in oklab, var(--accent) 50%, transparent);
+          }
+        }
+      }
+    }
+  }
+  .dark\:hover\:bg-input\/50 {
+    &:is(.dark *) {
+      &:hover {
+        @media (hover: hover) {
+          background-color: var(--input);
+          @supports (color: color-mix(in lab, red, red)) {
+            background-color: color-mix(in oklab, var(--input) 50%, transparent);
+          }
+        }
+      }
+    }
+  }
+  .dark\:hover\:text-foreground {
+    &:is(.dark *) {
+      &:hover {
+        @media (hover: hover) {
+          color: var(--foreground);
+        }
+      }
+    }
+  }
+  .dark\:focus-visible\:ring-destructive\/40 {
+    &:is(.dark *) {
+      &:focus-visible {
+        --tw-ring-color: var(--destructive);
+        @supports (color: color-mix(in lab, red, red)) {
+          --tw-ring-color: color-mix(in oklab, var(--destructive) 40%, transparent);
+        }
+      }
+    }
+  }
+  .dark\:aria-invalid\:ring-destructive\/40 {
+    &:is(.dark *) {
+      &[aria-invalid="true"] {
+        --tw-ring-color: var(--destructive);
+        @supports (color: color-mix(in lab, red, red)) {
+          --tw-ring-color: color-mix(in oklab, var(--destructive) 40%, transparent);
+        }
+      }
+    }
+  }
+  .dark\:data-\[state\=active\]\:border-input {
+    &:is(.dark *) {
+      &[data-state="active"] {
+        border-color: var(--input);
+      }
+    }
+  }
+  .dark\:data-\[state\=active\]\:bg-input\/30 {
+    &:is(.dark *) {
+      &[data-state="active"] {
+        background-color: var(--input);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--input) 30%, transparent);
+        }
+      }
+    }
+  }
+  .dark\:data-\[state\=active\]\:text-foreground {
+    &:is(.dark *) {
+      &[data-state="active"] {
+        color: var(--foreground);
+      }
+    }
+  }
+  .dark\:group-data-\[variant\=line\]\/tabs-list\:data-\[state\=active\]\:border-transparent {
+    &:is(.dark *) {
+      &:is(:where(.group\/tabs-list)[data-variant="line"] *) {
+        &[data-state="active"] {
+          border-color: transparent;
+        }
+      }
+    }
+  }
+  .dark\:group-data-\[variant\=line\]\/tabs-list\:data-\[state\=active\]\:bg-transparent {
+    &:is(.dark *) {
+      &:is(:where(.group\/tabs-list)[data-variant="line"] *) {
+        &[data-state="active"] {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+  .\[\&_svg\]\:pointer-events-none {
+    & svg {
+      pointer-events: none;
+    }
+  }
+  .\[\&_svg\]\:shrink-0 {
+    & svg {
+      flex-shrink: 0;
+    }
+  }
+  .\[\&_svg\:not\(\[class\*\=\'size-\'\]\)\]\:size-3 {
+    & svg:not([class*='size-']) {
+      width: calc(var(--spacing) * 3);
+      height: calc(var(--spacing) * 3);
+    }
+  }
+  .\[\&_svg\:not\(\[class\*\=\'size-\'\]\)\]\:size-4 {
+    & svg:not([class*='size-']) {
+      width: calc(var(--spacing) * 4);
+      height: calc(var(--spacing) * 4);
+    }
+  }
+  .\[\&\>svg\]\:pointer-events-none {
+    &>svg {
+      pointer-events: none;
+    }
+  }
+  .\[\&\>svg\]\:size-3 {
+    &>svg {
+      width: calc(var(--spacing) * 3);
+      height: calc(var(--spacing) * 3);
+    }
+  }
+  .\[a\&\]\:hover\:bg-accent {
+    a& {
+      &:hover {
+        @media (hover: hover) {
+          background-color: var(--accent);
+        }
+      }
+    }
+  }
+  .\[a\&\]\:hover\:bg-destructive\/90 {
+    a& {
+      &:hover {
+        @media (hover: hover) {
+          background-color: var(--destructive);
+          @supports (color: color-mix(in lab, red, red)) {
+            background-color: color-mix(in oklab, var(--destructive) 90%, transparent);
+          }
+        }
+      }
+    }
+  }
+  .\[a\&\]\:hover\:bg-primary\/90 {
+    a& {
+      &:hover {
+        @media (hover: hover) {
+          background-color: var(--primary);
+          @supports (color: color-mix(in lab, red, red)) {
+            background-color: color-mix(in oklab, var(--primary) 90%, transparent);
+          }
+        }
+      }
+    }
+  }
+  .\[a\&\]\:hover\:bg-secondary\/90 {
+    a& {
+      &:hover {
+        @media (hover: hover) {
+          background-color: var(--secondary);
+          @supports (color: color-mix(in lab, red, red)) {
+            background-color: color-mix(in oklab, var(--secondary) 90%, transparent);
+          }
+        }
+      }
+    }
+  }
+  .\[a\&\]\:hover\:text-accent-foreground {
+    a& {
+      &:hover {
+        @media (hover: hover) {
+          color: var(--accent-foreground);
+        }
+      }
+    }
+  }
+  .\[a\&\]\:hover\:underline {
+    a& {
+      &:hover {
+        @media (hover: hover) {
+          text-decoration-line: underline;
+        }
+      }
+    }
+  }
+}
+@property --tw-animation-delay {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0s;
+}
+@property --tw-animation-direction {
+  syntax: "*";
+  inherits: false;
+  initial-value: normal;
+}
+@property --tw-animation-duration {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-animation-fill-mode {
+  syntax: "*";
+  inherits: false;
+  initial-value: none;
+}
+@property --tw-animation-iteration-count {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-enter-blur {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-enter-opacity {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-enter-rotate {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-enter-scale {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-enter-translate-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-enter-translate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-exit-blur {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-exit-opacity {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-exit-rotate {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-exit-scale {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-exit-translate-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-exit-translate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: var(--ring);
+    @supports (color: color-mix(in lab, red, red)) {
+      outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+    }
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+@layer base {
+  :root {
+    font-family: var(--font-sans);
+  }
+  body {
+    position: relative;
+    margin: calc(var(--spacing) * 0);
+    display: grid;
+    min-height: 100vh;
+    min-width: 320px;
+    place-items: center;
+    overflow: hidden;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+  #root {
+    height: 100%;
+    width: 100%;
+    padding: calc(var(--spacing) * 1);
+  }
+}
+@property --tw-space-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-leading {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-font-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-inset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-ring-inset {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-offset-width {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --tw-ring-offset-color {
+  syntax: "*";
+  inherits: false;
+  initial-value: #fff;
+}
+@property --tw-ring-offset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-blur {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-brightness {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-contrast {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-grayscale {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-hue-rotate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-invert {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-opacity {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-saturate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-sepia {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-drop-shadow-size {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-content {
+  syntax: "*";
+  initial-value: "";
+  inherits: false;
+}
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+    *, ::before, ::after, ::backdrop {
+      --tw-space-y-reverse: 0;
+      --tw-border-style: solid;
+      --tw-leading: initial;
+      --tw-font-weight: initial;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-color: initial;
+      --tw-shadow-alpha: 100%;
+      --tw-inset-shadow: 0 0 #0000;
+      --tw-inset-shadow-color: initial;
+      --tw-inset-shadow-alpha: 100%;
+      --tw-ring-color: initial;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-inset-ring-color: initial;
+      --tw-inset-ring-shadow: 0 0 #0000;
+      --tw-ring-inset: initial;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-outline-style: solid;
+      --tw-blur: initial;
+      --tw-brightness: initial;
+      --tw-contrast: initial;
+      --tw-grayscale: initial;
+      --tw-hue-rotate: initial;
+      --tw-invert: initial;
+      --tw-opacity: initial;
+      --tw-saturate: initial;
+      --tw-sepia: initial;
+      --tw-drop-shadow: initial;
+      --tw-drop-shadow-color: initial;
+      --tw-drop-shadow-alpha: 100%;
+      --tw-drop-shadow-size: initial;
+      --tw-content: "";
+      --tw-animation-delay: 0s;
+      --tw-animation-direction: normal;
+      --tw-animation-duration: initial;
+      --tw-animation-fill-mode: none;
+      --tw-animation-iteration-count: 1;
+      --tw-enter-blur: 0;
+      --tw-enter-opacity: 1;
+      --tw-enter-rotate: 0;
+      --tw-enter-scale: 1;
+      --tw-enter-translate-x: 0;
+      --tw-enter-translate-y: 0;
+      --tw-exit-blur: 0;
+      --tw-exit-opacity: 1;
+      --tw-exit-rotate: 0;
+      --tw-exit-scale: 1;
+      --tw-exit-translate-x: 0;
+      --tw-exit-translate-y: 0;
+    }
+  }
+}
+</file>
+
+<file path="src/client/components/ui/badge.tsx">
+import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
+import { Slot } from "radix-ui"
+
+import { cn } from "@/client/lib/utils"
+
+const badgeVariants = cva(
+  "inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground [a&]:hover:bg-primary/90",
+        secondary:
+          "bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90",
+        destructive:
+          "bg-destructive text-white focus-visible:ring-destructive/20 dark:bg-destructive/60 dark:focus-visible:ring-destructive/40 [a&]:hover:bg-destructive/90",
+        outline:
+          "border-border text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+        ghost: "[a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 [a&]:hover:underline",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+)
+
+function Badge({
+  className,
+  variant = "default",
+  asChild = false,
+  ...props
+}: React.ComponentProps<"span"> &
+  VariantProps<typeof badgeVariants> & { asChild?: boolean }) {
+  const Comp = asChild ? Slot.Root : "span"
+
+  return (
+    <Comp
+      data-slot="badge"
+      data-variant={variant}
+      className={cn(badgeVariants({ variant }), className)}
+      {...props}
+    />
+  )
+}
+
+export { Badge, badgeVariants }
+</file>
+
+<file path="src/client/components/ui/button.tsx">
+import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
+import { Slot } from "radix-ui"
+
+import { cn } from "@/client/lib/utils"
+
+const buttonVariants = cva(
+  "inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:bg-destructive/60 dark:focus-visible:ring-destructive/40",
+        outline:
+          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost:
+          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-9 px-4 py-2 has-[>svg]:px-3",
+        xs: "h-6 gap-1 rounded-md px-2 text-xs has-[>svg]:px-1.5 [&_svg:not([class*='size-'])]:size-3",
+        sm: "h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5",
+        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        icon: "size-9",
+        "icon-xs": "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
+        "icon-sm": "size-8",
+        "icon-lg": "size-10",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+function Button({
+  className,
+  variant = "default",
+  size = "default",
+  asChild = false,
+  ...props
+}: React.ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean
+  }) {
+  const Comp = asChild ? Slot.Root : "button"
+
+  return (
+    <Comp
+      data-slot="button"
+      data-variant={variant}
+      data-size={size}
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  )
+}
+
+export { Button, buttonVariants }
+</file>
+
+<file path="src/client/components/ui/input.tsx">
+import * as React from "react"
+
+import { cn } from "@/client/lib/utils"
+
+function Input({ className, type, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      type={type}
+      data-slot="input"
+      className={cn(
+        "h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none selection:bg-primary selection:text-primary-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm dark:bg-input/30",
+        "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
+        "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+export { Input }
+</file>
+
+<file path="src/client/components/ui/separator.tsx">
+"use client"
+
+import * as React from "react"
+import { Separator as SeparatorPrimitive } from "radix-ui"
+
+import { cn } from "@/client/lib/utils"
+
+function Separator({
+  className,
+  orientation = "horizontal",
+  decorative = true,
+  ...props
+}: React.ComponentProps<typeof SeparatorPrimitive.Root>) {
+  return (
+    <SeparatorPrimitive.Root
+      data-slot="separator"
+      decorative={decorative}
+      orientation={orientation}
+      className={cn(
+        "shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+export { Separator }
+</file>
+
+<file path="src/client/components/ui/tabs.tsx">
+import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
+import { Tabs as TabsPrimitive } from "radix-ui"
+
+import { cn } from "@/client/lib/utils"
+
+function Tabs({
+  className,
+  orientation = "horizontal",
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Root>) {
+  return (
+    <TabsPrimitive.Root
+      data-slot="tabs"
+      data-orientation={orientation}
+      orientation={orientation}
+      className={cn(
+        "group/tabs flex gap-2 data-[orientation=horizontal]:flex-col",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+const tabsListVariants = cva(
+  "group/tabs-list inline-flex w-fit items-center justify-center rounded-lg p-[3px] text-muted-foreground group-data-[orientation=horizontal]/tabs:h-9 group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col data-[variant=line]:rounded-none",
+  {
+    variants: {
+      variant: {
+        default: "bg-muted",
+        line: "gap-1 bg-transparent",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+)
+
+function TabsList({
+  className,
+  variant = "default",
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.List> &
+  VariantProps<typeof tabsListVariants>) {
+  return (
+    <TabsPrimitive.List
+      data-slot="tabs-list"
+      data-variant={variant}
+      className={cn(tabsListVariants({ variant }), className)}
+      {...props}
+    />
+  )
+}
+
+function TabsTrigger({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
+  return (
+    <TabsPrimitive.Trigger
+      data-slot="tabs-trigger"
+      className={cn(
+        "relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap text-foreground/60 transition-all group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 group-data-[variant=default]/tabs-list:data-[state=active]:shadow-sm group-data-[variant=line]/tabs-list:data-[state=active]:shadow-none dark:text-muted-foreground dark:hover:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-[state=active]:bg-transparent dark:group-data-[variant=line]/tabs-list:data-[state=active]:border-transparent dark:group-data-[variant=line]/tabs-list:data-[state=active]:bg-transparent",
+        "data-[state=active]:bg-background data-[state=active]:text-foreground dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 dark:data-[state=active]:text-foreground",
+        "after:absolute after:bg-foreground after:opacity-0 after:transition-opacity group-data-[orientation=horizontal]/tabs:after:inset-x-0 group-data-[orientation=horizontal]/tabs:after:bottom-[-5px] group-data-[orientation=horizontal]/tabs:after:h-0.5 group-data-[orientation=vertical]/tabs:after:inset-y-0 group-data-[orientation=vertical]/tabs:after:-right-1 group-data-[orientation=vertical]/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-[state=active]:after:opacity-100",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function TabsContent({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Content>) {
+  return (
+    <TabsPrimitive.Content
+      data-slot="tabs-content"
+      className={cn("flex-1 outline-none", className)}
+      {...props}
+    />
+  )
+}
+
+export { Tabs, TabsList, TabsTrigger, TabsContent, tabsListVariants }
+</file>
+
+<file path="src/client/features/mail/content.tsx">
+import type {  Tab, Email } from "@/client/types";
+import { formatAddress, formatDate } from "@/client/lib/format";
+import { useState } from "react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/client/components/ui/tabs";
+
+type Props = {
+  email: Email;
+};
+
+export function Content({ email }: Props) {
+  const [tab, setTab] = useState<Tab>("html");
+
+  return (
+    <div className="flex flex-col h-full">
+      <div className="px-6 py-4 border-b border-gray-200">
+        <h2 className="text-base font-semibold text-gray-900 mb-3 leading-snug">
+          {email.subject}
+        </h2>
+        <div className="flex items-center justify-between">
+          <div className="space-y-0.5">
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <span className="text-gray-400 w-16 shrink-0">From</span>
+              <span className="font-medium text-gray-800">
+                {email.from?.text}
+              </span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <span className="text-gray-400 w-16 shrink-0">To</span>
+              <span>{formatAddress(email.to)}</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <span className="text-gray-400 w-16 shrink-0">Reply To</span>
+              <span>{formatAddress(email.replyTo)}</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <span className="text-gray-400 w-16 shrink-0">CC</span>
+              <span>{formatAddress(email.cc)}</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <span className="text-gray-400 w-16 shrink-0">BCC</span>
+              <span>{formatAddress(email.bcc)}</span>
+            </div>
+          </div>
+          <span className="text-sm text-gray-400 shrink-0">{formatDate(String(email.date))}</span>
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <Tabs value={tab} onValueChange={(v) => setTab(v as Tab)} className="flex flex-col flex-1 min-h-0">
+        <div className="px-6 border-b border-gray-200">
+          <TabsList className="h-10 bg-transparent p-0 gap-0">
+            <TabsTrigger
+              value="html"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-gray-500 data-[state=active]:text-gray-600 data-[state=active]:bg-transparent text-sm px-4"
+            >
+              Display HTML
+            </TabsTrigger>
+            <TabsTrigger
+              value="json"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-gray-500 data-[state=active]:text-gray-600 data-[state=active]:bg-transparent text-sm px-4"
+            >
+              JSON
+            </TabsTrigger>
+          </TabsList>
+        </div>
+
+        {/* HTML Preview */}
+        <TabsContent value="html" className="flex-1 overflow-y-auto m-0 px-6 py-5">
+          <span dangerouslySetInnerHTML={
+            {__html:email.html}
+          }/>
+        </TabsContent>
+        <TabsContent value="json" className="flex-1 overflow-y-auto m-0 px-6 py-5">
+          <pre className="text-xs text-gray-600 font-mono whitespace-pre-wrap bg-gray-50 rounded-md p-4 leading-relaxed">
+            {JSON.stringify(email, null, 2)}
+          </pre>
+        </TabsContent>
+        
+      </Tabs>
+    </div>
+  );
+}
+</file>
+
+<file path="src/client/features/mail/inbox.tsx">
+import { useState } from "react";
+import type { Email } from "@/client/types";
+import { TopBar } from "./topbar";
+import { Sidebar } from "./sidebar";
+import { Content } from "./content";
+import { Mail } from "lucide-react";
+import { useWebSocket } from "@/client/hooks/useWebSocket";
+
+export function Inbox() {
+  const { messages, setMessages, send, connected } = useWebSocket(`ws://${window.location.host}/ws`);
+  const [selected, setSelected] = useState<Email | null>(messages[0] ?? null);
+
+  const handleSelect = (email: Email) => {
+    setSelected(email);
+    setMessages((prev) =>
+      prev.map((e) =>
+        e.messageId === email.messageId ? { ...e, read: true } : e,
+      ),
+    );
+  };
+
+  const handleClear = () => {
+    setMessages([]);
+    setSelected(null);
+    send({ type: "clear" });
+  };
+
+  return (
+    <div className="flex flex-col h-screen bg-gray-50 font-sans">
+      <TopBar onClear={handleClear} connected={connected} />
+
+      <div className="flex flex-1 min-h-0">
+        {/* Left panel */}
+        <div className="w-72 shrink-0 flex flex-col min-h-0">
+          <Sidebar
+            emails={messages}
+            selectedId={selected?.messageId ?? null}
+            onSelect={handleSelect}
+          />
+        </div>
+
+        {/* Right panel */}
+        <div className="flex-1 bg-white min-h-0 overflow-hidden">
+          {selected ? (
+            <Content email={selected} />
+          ) : (
+            <div className="flex flex-col items-center justify-center h-full text-gray-300 gap-3">
+              <Mail className="w-12 h-12" />
+              <p className="text-sm">No mail selected</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/client/features/mail/list-item.tsx">
+import type { Email } from "@/client/types";
+import { cn } from "@/client/lib/utils";
+import { formatDate } from "@/client/lib/format";
+ 
+type Props = {
+  email: Email;
+  selected: boolean;
+  onClick: () => void;
+};
+ 
+export function ListItem({ email, selected, onClick }: Props) {
+  return (
+    <button
+      onClick={onClick}
+      className={cn(
+        "w-full text-left px-4 py-3 border-b border-gray-100 transition-colors hover:bg-gray-50 focus:outline-none",
+        selected && "bg-blue-50 border-l-2 border-l-blue-500",
+        !email.read && "bg-white"
+      )}
+    >
+      <div className="flex items-start justify-between gap-2 mb-1">
+        <span className={cn("text-sm truncate max-w-40", !email.read ? "font-semibold text-gray-900" : "font-medium text-gray-600")}>
+          {email.from?.text || "Unknown Sender"}
+        </span>
+        <span className="text-xs text-gray-400 shrink-0">{formatDate(String(email.date))}</span>
+      </div>
+ 
+      <div className="flex items-center gap-1 mb-1">
+        {!email.read && (
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-0.5" />
+        )}
+        <p className={cn("text-xs truncate", !email.read ? "font-semibold text-gray-800" : "text-gray-600")}>
+          {email.subject}
+        </p>
+      </div>
+    </button>
+  );
+}
+</file>
+
+<file path="src/client/features/mail/sidebar.tsx">
+import { Input } from "@/client/components/ui/input";
+import { ListItem } from "./list-item";
+import { Search } from "lucide-react";
+import { useState } from "react";
+import type { Email } from "@/client/types";
+
+type Props = {
+  emails: Email[];
+  selectedId: string | null;
+  onSelect: (email: Email) => void;
+};
+
+export function Sidebar({ emails, selectedId, onSelect }: Props) {
+  const [query, setQuery] = useState("");
+
+  const filtered = emails.filter((e) => {
+    const to = Array.isArray(e.to)
+      ? e.to.map((t) => (typeof t === "string" ? t : t.text))
+      : [e.to?.text || ""];
+    return (
+      e?.subject?.toLowerCase().includes(query.toLowerCase()) ||
+      e?.from?.text?.toLowerCase().includes(query.toLowerCase()) ||
+      to.some((t: string) => t.toLowerCase().includes(query.toLowerCase()))
+    );
+  });
+
+  return (
+    <div className="flex flex-col h-full border-r border-gray-200 bg-white">
+      <div className="px-3 py-3 border-b border-gray-100">
+        <div className="relative">
+          <Search className="absolute left-2.5 top-2.5 w-3.5 h-3.5 text-gray-400" />
+          <Input
+            placeholder="Search ..."
+            className="pl-8 text-xs h-8 bg-gray-50 border-gray-200 focus-visible:ring-1"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
+      </div>
+
+      {/* Filter info */}
+      <div className="px-4 py-2 flex items-center justify-between">
+        <span className="text-xs text-gray-400">
+          Filtered:{" "}
+          <span className="font-medium text-gray-600">
+            {filtered.length} of {emails.length} email
+          </span>
+        </span>
+      </div>
+
+      {/* Email list */}
+      <div className="flex-1 overflow-y-auto">
+        {filtered.length === 0 ? (
+          <div className="flex items-center justify-center h-32 text-xs text-gray-400">
+            {query ? `No Mail found matching "${query}"` : "No Mail found"}
+          </div>
+        ) : (
+          filtered.map((email) => (
+            <ListItem
+              key={email.messageId}
+              email={email}
+              selected={selectedId === email.messageId}
+              onClick={() => onSelect(email)}
+            />
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/client/features/mail/topbar.tsx">
+import { Button } from "@/client/components/ui/button";
+import { Trash2 } from "lucide-react";
+
+type Props = {
+  onClear: () => void;
+  connected: boolean;
+};
+
+export function TopBar({ onClear, connected }: Props) {
+  const webPort = parseInt(window.location.port, 10);
+  const smtpPort = webPort ? (webPort - 1000).toString() : "1025";
+
+  return (
+    <header className="h-14 border-b border-gray-200 bg-slate-400 flex items-center justify-between px-4 shrink-0">
+      <div className="flex items-center gap-3">
+        <span className="text-4xl">👻</span>
+        <div>
+          <h1 className="text-sm font-semibold text-slate-900 leading-none">
+            Mail Buu
+          </h1>
+          <p className="text-[11px] text-gray-900 mt-0.5">
+            Local Dev SMTP Server (Port: #{smtpPort})
+          </p>
+        </div>
+      </div>
+
+      <div className="flex items-center gap-3">
+        <span
+          className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${
+            connected
+              ? "bg-green-100 text-green-700"
+              : "bg-red-100 text-red-700"
+          }`}
+        >
+          <span className={`relative flex h-2 w-2`}>
+            {connected && (
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+            )}
+            <span
+              className={`relative inline-flex h-2 w-2 rounded-full ${
+                connected ? "bg-green-500" : "bg-red-500"
+              }`}
+            />
+          </span>
+          {connected ? "Online" : "Offline"}
+        </span>
+
+        <Button
+          variant="destructive"
+          size="sm"
+          onClick={onClear}
+          className="gap-1.5 text-xs h-8"
+        >
+          <Trash2 className="w-3.5 h-3.5" />
+          Clear Inbox
+        </Button>
+      </div>
+    </header>
+  );
+}
+</file>
+
+<file path="src/client/hooks/useWebSocket.ts">
+import type { Email } from "@/client/types";
+
+import { useState, useEffect, useRef } from "react";
+import { playNotificationSound } from "../lib/notification";
+
+export function useWebSocket(url: string) {
+  const [messages, setMessages] = useState<Email[]>([]);
+  const [connected, setConnected] = useState(false);
+  const wsRef = useRef<WebSocket | null>(null);
+  const isFirstLoad = useRef(true);
+
+  useEffect(() => {
+    if (wsRef.current?.readyState === WebSocket.OPEN) return;
+
+    const ws = new WebSocket(url);
+    wsRef.current = ws;
+
+    ws.onopen = () => setConnected(true);
+    ws.onclose = () => setConnected(false);
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.type === "ready") {
+        isFirstLoad.current = false;
+      } else if (data.type === "clear") {
+        setMessages([]);
+      } else {
+        if (!isFirstLoad.current) playNotificationSound();
+        setMessages((prev) => [{ ...data, read: false }, ...prev]);
+      }
+    };
+
+    return () => {
+      if (ws.readyState === WebSocket.CONNECTING) {
+        ws.onopen = () => ws.close();
+      } else {
+        ws.close();
+      }
+    }
+  }, [url]);
+
+  const send = (msg: object) => {
+    wsRef.current?.send(JSON.stringify(msg));
+  };
+
+  return { messages, connected, setMessages, send };
+}
+</file>
+
+<file path="src/client/lib/format.ts">
+import type { AddressObject, ParsedMail } from "mailparser";
+
+const dateFormatter = new Intl.DateTimeFormat('id-ID', {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+  hour12: false // Pakai format 24 jam
+});
+
+export const formatAddress = function (address?: AddressObject | AddressObject[]) {
+  return Array.isArray(address) ? address.map(value => value.text).join(", ") : address?.text || "-"
+}
+
+export function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+
+  if (isNaN(date.getTime())) {
+    return "Invalid Date";
+  }  
+
+  const parts = dateFormatter.formatToParts(date);
+  
+  const getValue = (type: string) => parts.find(p => p.type === type)?.value || '';
+
+  const day = getValue('day');
+  const month = getValue('month').replace('.', ''); // Menghilangkan titik di singkatan bulan (misal: Mei.)
+  const year = getValue('year');
+  const hour = getValue('hour');
+  const minute = getValue('minute');
+  const second = getValue('second');
+
+  return `${day} ${month} ${year} ${hour}:${minute}:${second}`;
+}
+
+export const formatHeader = function (parsed: ParsedMail) {
+  const from = parsed.from?.text
+  const to = formatAddress(parsed.to)
+  const replyTo = formatAddress(parsed.replyTo)
+  const cc = formatAddress(parsed.cc)
+  const bcc = formatAddress(parsed.bcc)
+  const date = parsed.date?.toLocaleString()
+  const id = parsed.messageId
+  const subject = parsed.subject
+
+  return `${id}
+
+From     : ${from}
+To       : ${to}
+Reply To : ${replyTo}
+CC       : ${cc}
+BCC      : ${bcc}
+Date     : ${date}
+
+Subject  : ${subject}
+`
+}
+
+export const formatRaw = function (parsed: ParsedMail) {
+  return `${parsed.html}
+`
+}
+</file>
+
+<file path="src/client/lib/notification.ts">
+let audioCtx: AudioContext | null = null;
+
+function getAudioContext(): AudioContext {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+  }
+  return audioCtx;
+}
+
+
+export function playNotificationSound() {
+  try {
+    const audioCtx = getAudioContext();
+    const now = audioCtx.currentTime;
+
+    const play = (freq: number, startTime: number, duration: number, volume = 0.06) => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      const filter = audioCtx.createBiquadFilter();
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      filter.type = "lowpass";
+      filter.frequency.setValueAtTime(2000, startTime);
+      filter.frequency.exponentialRampToValueAtTime(800, startTime + duration);
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, startTime);
+      osc.frequency.exponentialRampToValueAtTime(freq * 1.02, startTime + duration * 0.5);
+
+      // attack → sustain → release
+      gain.gain.setValueAtTime(0, startTime);
+      gain.gain.linearRampToValueAtTime(volume, startTime + 0.01);
+      gain.gain.setValueAtTime(volume, startTime + duration * 0.6);
+      gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+      osc.start(startTime);
+      osc.stop(startTime + duration);
+    };
+
+    // dua nada naik — seperti notif modern
+    play(620, now,        0.18, 0.05);
+    play(820, now + 0.13, 0.22, 0.06);
+
+  } catch (e) {
+    // diabaikan jika browser memblokir audio
+  }
+}
+</file>
+
+<file path="src/client/lib/utils.ts">
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+</file>
+
+<file path="src/client/index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1F47B;</text></svg>"
+    />
+    <title>Mail Buu</title>
+    <script type="module" src="./root.tsx" async></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+</file>
+
+<file path="src/client/root.tsx">
+/**
+ * This file is the entry point for the React app, it sets up the root
+ * element and renders the App component to the DOM.
+ *
+ * It is included in `src/index.html`.
+ */
+
+import "../assets/tailwind-built.css";
+
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { Inbox } from "@/client/features/mail/inbox";
+
+const elem = document.getElementById("root")!;
+const app = (
+  <StrictMode>
+    <Inbox />
+  </StrictMode>
+);
+
+// https://bun.com/docs/bundler/hot-reloading#import-meta-hot-data
+(import.meta.hot.data.root ??= createRoot(elem)).render(app);
+</file>
+
+<file path="src/client/types.ts">
+import type { ParsedMail } from "mailparser";
+
+export type Tab = "html" | "plain" | "raw";
+export type Email = ParsedMail & {
+  read?: boolean;
+}
+</file>
+
+<file path="src/server/index.ts">
+import { serve } from "bun";
+import index from "../client/index.html";
+import { state } from "./state";
+import { getTitle } from "./lib";
+import { loadSMTP } from "./smtp";
+
+const smtpPort = +process?.env?.BUN_PUBLIC_SMTP_PORT! || 1025;
+const port = smtpPort + 1000;
+
+loadSMTP(smtpPort);
+const server = serve({
+  port,
+  routes: {
+    "/*": index,
+    "/ws": (req) => {
+      const upgraded = server.upgrade(req);
+      if (!upgraded) {
+        return new Response("WebSocket upgrade failed", { status: 400 });
+      }
+    },
+  },
+  websocket: {
+    async open(ws) {
+      if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+        state.ws.close();
+      }
+      state.ws = ws;
+      console.log(`WebSocket connection opened`);
+      for (const msg of state.messages) {
+        ws.send(JSON.stringify(msg));
+      }
+       ws.send(JSON.stringify({ type: "ready" }));
+    },
+    async message(ws, message) {
+      const clientMsg = JSON.parse(String(message));
+      if (clientMsg.type === "clear") {
+        state.ws?.send(JSON.stringify({ type: "clear" }));
+        state.messages = [];
+        console.log(`Messages cleared by client`);
+      }
+    },
+    async close(ws, code, reason) {
+      console.log(`WebSocket closed: ${code} - ${reason}`);
+    },
+  },
+
+  development: process.env.NODE_ENV !== "production" && {
+    hmr: true,
+    console: true,
+  },
+});
+
+console.log(getTitle());
+console.log(` 🚀 Web Server : ${server.url}`);
+</file>
+
+<file path="src/server/lib.ts">
+import figlet from "figlet"
+
+export const getTitle = function () {
+  const title = 'Mail Buu'
+  return figlet.textSync(title, {
+    horizontalLayout: "fitted",
+  })
+}
+</file>
+
+<file path="src/server/smtp.ts">
+import { SMTPServer } from "smtp-server";
+import { simpleParser } from "mailparser";
+import { state } from "./state";
+
+export const loadSMTP = function (port: number) {
+  const host = "127.0.0.1";
+  if (!state.smtpServer) {
+      state.smtpServer = new SMTPServer({
+      banner: undefined,
+      secure: false,
+      logger: false,
+      disabledCommands: ["STARTTLS"],
+      onAuth(auth, session, callback) {
+        return callback(null, {
+          user: "fakesmtp",
+        });
+      },
+      async onData(stream, session, callback) {
+        const mail = await simpleParser(stream);
+        state.messages.push(mail); 
+        state.ws?.send(JSON.stringify(mail));
+        return callback();
+      },
+    });
+
+    state.smtpServer.on("error", (err) => {
+      console.error("SMTP Server error:", err);
+    });
+
+    state.smtpServer.listen(+port, host, () => {
+      console.log(` ⚡ SMTP Port  : ${port}`);
+    });
+  }
+};
+</file>
+
+<file path="src/server/state.ts">
+import type { Email } from "@/client/types";
+import type { ServerWebSocket } from "bun";
+import type { SMTPServer } from "smtp-server";
+
+export const state = {
+  ws: null as ServerWebSocket<undefined> | null,
+  messages: [] as Email[],
+  smtpServer: null as SMTPServer | null
+}
+</file>
+
+<file path=".gitignore">
+# dependencies (bun install)
+node_modules
+
+# output
+out
+dist
+*.tgz
+
+# code coverage
+coverage
+*.lcov
+
+# logs
+logs
+_.log
+report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# caches
+.eslintcache
+.cache
+*.tsbuildinfo
+
+# IntelliJ based IDEs
+.idea
+
+# Finder (MacOS) folder config
+.DS_Store
+</file>
+
+<file path="bun-env.d.ts">
+// Generated by `bun init`
+
+declare module "*.svg" {
+  /**
+   * A path to the SVG file
+   */
+  const path: `${string}.svg`;
+  export = path;
+}
+
+declare module "*.css" {}
+
+declare module "*.module.css" {
+  /**
+   * A record of class names to their corresponding CSS module classes
+   */
+  const classes: { readonly [key: string]: string };
+  export = classes;
+}
+</file>
+
+<file path="components.json">
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/assets/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/client/components",
+    "utils": "@/client/lib/utils",
+    "ui": "@/client/components/ui",
+    "lib": "@/client/lib",
+    "hooks": "@/client/hooks"
+  },
+  "iconLibrary": "lucide"
+}
+</file>
+
+<file path="mailbuu.ts">
+#!/usr/bin/env bun
+
+const args = process.argv.slice(2);
+const portArg = args.find(a => a.startsWith("--port="));
+if (portArg) {
+  process.env.BUN_PUBLIC_SMTP_PORT = portArg.split("=")[1];
+}
+
+import "./src/server/index.ts";
+</file>
+
+<file path="package.json">
+{
+  "name": "@fortezhuo/mailbuu",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "mailbuu": "./mailbuu.ts"
+  },
+  "scripts": {
+  },
+  "dependencies": {
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-slot": "^1.2.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "figlet": "^1.11.0",
+    "lucide-react": "^1",
+    "mailparser": "^3.9.8",
+    "radix-ui": "^1.4.3",
+    "react": "^19",
+    "react-dom": "^19",
+    "smtp-server": "^3.18.4",
+    "tailwind-merge": "^3.3.1",
+    "tw-animate-css": "^1.4.0"
+  },
+  "devDependencies": {
+    "@bunup/plugin-tailwindcss": "^0.16.31",
+    "@types/bun": "latest",
+    "@types/mailparser": "^3.4.6",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/smtp-server": "^3.5.13",
+    "tailwindcss": "^4.1.11"
+  }
+}
+</file>
+
+<file path="README.md">
+# 👻 mailbuu
+
+A local SMTP server for development & testing — catch outgoing emails without sending them for real.
+
+## Features
+
+- 📬 Catches all outgoing SMTP emails locally
+- ⚡ Real-time inbox via WebSocket — no refresh needed
+- 🔍 Search by subject, sender, or recipient
+- 🗑️ Clear inbox with one click
+- 🔔 Audio notification on new email
+- 👁️ HTML preview, and json view
+
+## Install
+
+```bash
+bun install -g @fortezhuo/mailbuu
+```
+
+## Usage
+
+```bash
+# run with default ports (SMTP: 1025, Web: 2025)
+mailbuu
+
+# custom SMTP port
+mailbuu --port=2525
+```
+
+Then open [http://localhost:2025](http://localhost:2025) in your browser.
+
+## Port Convention
+
+| Service | Default Port |
+|---------|-------------|
+| SMTP    | 1025        |
+| Web UI  | SMTP + 1000 |
+
+So if SMTP is `1025`, Web UI is at `2025`. If SMTP is `2525`, Web UI is at `3525`.
+
+## Configure your app
+
+Point your app's SMTP settings to mailbuu:
+
+```
+host: 127.0.0.1
+port: 1025
+secure: false
+auth: (any username/password works)
+```
+
+### Node.js (nodemailer)
+
+```javascript
+const transporter = nodemailer.createTransport({
+  host: "127.0.0.1",
+  port: 1025,
+  secure: false,
+});
+```
+
+### Laravel
+
+```dotenv
+MAIL_MAILER=smtp
+MAIL_HOST=127.0.0.1
+MAIL_PORT=1025
+MAIL_ENCRYPTION=null
+```
+
+### Django
+
+```python
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "127.0.0.1"
+EMAIL_PORT = 1025
+```
+
+## Development
+
+```bash
+git clone https://github.com/fortezhuo/mailbuu
+cd mailbuu
+bun install
+bun dev
+```
+
+## Stack
+
+- [Bun](https://bun.sh) — runtime, bundler, HTTP server
+- [React 19](https://react.dev) — UI
+- [Tailwind CSS v4](https://tailwindcss.com) — styling
+- [shadcn/ui](https://ui.shadcn.com) — components
+- [smtp-server](https://nodemailer.com/extras/smtp-server/) — SMTP
+- [mailparser](https://nodemailer.com/extras/mailparser/) — email parsing
+
+## License
+
+MIT
+</file>
+
+<file path="tsconfig.json">
+{
+  "compilerOptions": {
+    // Environment setup & latest features
+    "lib": ["ESNext", "DOM"],
+    "target": "ESNext",
+    "module": "Preserve",
+    "moduleDetection": "force",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "types": ["bun", "react"],
+
+    // Bundler mode
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+
+    // Best practices
+    "strict": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    // Some stricter flags (disabled by default)
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noPropertyAccessFromIndexSignature": false
+  },
+
+  "exclude": ["dist", "node_modules"]
+}
+</file>
+
+</files>
