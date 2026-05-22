@@ -1,98 +1,104 @@
 # 👻 mailbuu
 
-A local SMTP server for development & testing — catch outgoing emails without sending them for real.
+A modern local SMTP server for development and testing.
+
+Catch outgoing emails locally without sending them to real recipients, complete with a real-time web inbox powered by WebSocket.
+
+---
 
 ## Features
 
-- 📬 Catches all outgoing SMTP emails locally
-- ⚡ Real-time inbox via WebSocket — no refresh needed
-- 🔍 Search by subject, sender, or recipient
-- 🗑️ Clear inbox with one click
-- 🔔 Audio notification on new email
-- 👁️ HTML preview, and json view
+* 📬 Catch all outgoing SMTP emails locally
+* ⚡ Real-time inbox updates via WebSocket
+* 🔍 Search emails by subject, sender, or recipient
+* 🗑️ Clear inbox instantly
+* 🔔 Audio notification for new emails
+* 👁️ HTML preview and raw JSON viewer
+* 🧩 Simple CLI usage
+* 🚀 Built with Node.js, Hono, React, and WebSocket
 
-## Install
+---
+
+## Installation
 
 ```bash
-bun install -g @fortezhuo/mailbuu
+npm install -g @fortezhuo/mailbuu
 ```
+
+---
 
 ## Usage
 
-```bash
-# run with default ports (SMTP: 1025, Web: 2025)
-mailbuu
+### Start with default ports
 
-# custom SMTP port
+```bash
+mailbuu
+```
+
+Default ports:
+
+| Service | Port |
+| ------- | ---- |
+| SMTP    | 1025 |
+| Web UI  | 2025 |
+
+---
+
+### Custom SMTP port
+
+```bash
 mailbuu --port=2525
 ```
 
-Then open [http://localhost:2025](http://localhost:2025) in your browser.
+If SMTP runs on `2525`, the Web UI will run on `3525`.
 
-## Port Convention
+---
 
-| Service | Default Port |
-|---------|-------------|
-| SMTP    | 1025        |
-| Web UI  | SMTP + 1000 |
+## Open Web UI
 
-So if SMTP is `1025`, Web UI is at `2025`. If SMTP is `2525`, Web UI is at `3525`.
+Open this in your browser:
 
-## Configure your app
-
-Point your app's SMTP settings to mailbuu:
-
+```txt
+http://localhost:2025
 ```
+
+Or:
+
+```txt
+http://localhost:<smtp_port + 1000>
+```
+
+---
+
+## Configure Your Application
+
+Point your application's SMTP configuration to mailbuu.
+
+### SMTP Configuration
+
+```txt
 host: 127.0.0.1
 port: 1025
 secure: false
-auth: (any username/password works)
+auth: any username/password
 ```
 
-### Node.js (nodemailer)
+---
 
-```javascript
+## Example Integrations
+
+### Node.js (Nodemailer)
+
+```js
+import nodemailer from "nodemailer";
+
 const transporter = nodemailer.createTransport({
   host: "127.0.0.1",
   port: 1025,
   secure: false,
 });
 ```
-
-### Laravel
-
-```dotenv
-MAIL_MAILER=smtp
-MAIL_HOST=127.0.0.1
-MAIL_PORT=1025
-MAIL_ENCRYPTION=null
-```
-
-### Django
-
-```python
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "127.0.0.1"
-EMAIL_PORT = 1025
-```
-
-## Development
-
-```bash
-git clone https://github.com/fortezhuo/mailbuu
-cd mailbuu
-bun install
-bun dev
-```
-
-## Stack
-
-- [Bun](https://bun.sh) — runtime, bundler, HTTP server
-- [React 19](https://react.dev) — UI
-- [Tailwind CSS v4](https://tailwindcss.com) — styling
-- [shadcn/ui](https://ui.shadcn.com) — components
-- [smtp-server](https://nodemailer.com/extras/smtp-server/) — SMTP
-- [mailparser](https://nodemailer.com/extras/mailparser/) — email parsing
+---
 
 ## License
 

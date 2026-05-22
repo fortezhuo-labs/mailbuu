@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
 const args = process.argv.slice(2);
 const portArg = args.find(a => a.startsWith("--port="));
@@ -7,4 +7,4 @@ if (portArg) {
 }
 process.env.NODE_ENV = "production";
 
-await import("./src/server/index.ts");
+await import("./dist/server/index.js");

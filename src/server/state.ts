@@ -1,9 +1,9 @@
-import type { Email } from "@/client/types";
-import type { ServerWebSocket } from "bun";
-import type { SMTPServer } from "smtp-server";
+import type { Email } from '@/client/types';
+import type { WebSocket } from 'ws';
+import type { SMTPServer } from 'smtp-server';
 
 export const state = {
-  ws: null as ServerWebSocket<undefined> | null,
+  ws: null as WebSocket | null,
   messages: [] as Email[],
-  smtpServer: null as SMTPServer | null
-}
+  smtpServer: null as SMTPServer | null,
+};
