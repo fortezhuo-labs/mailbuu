@@ -96,4 +96,4 @@ bun dev
 
 ## License
 
-MIT
+ISC
