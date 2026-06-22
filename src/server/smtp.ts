@@ -10,9 +10,10 @@ export const loadSMTP = function (port: number) {
       secure: false,
       logger: false,
       disabledCommands: ["STARTTLS"],
+      authOptional: true,
       onAuth(auth, session, callback) {
         return callback(null, {
-          user: "fakesmtp",
+          user: auth.username,
         });
       },
       async onData(stream, session, callback) {

@@ -1,14 +1,19 @@
-import type {  Tab, Email } from "@/client/types";
-import { formatAddress, formatDate } from "@/client/lib/format";
-import { useState } from "react";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/client/components/ui/tabs";
+import type { Tab, Email } from '@/client/types';
+import { formatAddress, formatDate } from '@/client/lib/format';
+import { useState } from 'react';
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from '@/client/components/ui/tabs';
 
 type Props = {
   email: Email;
 };
 
 export function Content({ email }: Props) {
-  const [tab, setTab] = useState<Tab>("html");
+  const [tab, setTab] = useState<Tab>('html');
 
   return (
     <div className="flex flex-col h-full">
@@ -41,12 +46,18 @@ export function Content({ email }: Props) {
               <span>{formatAddress(email.bcc)}</span>
             </div>
           </div>
-          <span className="text-sm text-gray-400 shrink-0">{formatDate(String(email.date))}</span>
+          <span className="text-sm text-gray-400 shrink-0">
+            {formatDate(String(email.date))}
+          </span>
         </div>
       </div>
 
       {/* Tabs */}
-      <Tabs value={tab} onValueChange={(v) => setTab(v as Tab)} className="flex flex-col flex-1 min-h-0">
+      <Tabs
+        value={tab}
+        onValueChange={v => setTab(v as Tab)}
+        className="flex flex-col flex-1 min-h-0"
+      >
         <div className="px-6 border-b border-gray-200">
           <TabsList className="h-10 bg-transparent p-0 gap-0">
             <TabsTrigger
@@ -65,19 +76,28 @@ export function Content({ email }: Props) {
         </div>
 
         {/* HTML Preview */}
-        <TabsContent value="html" className="flex-1 overflow-y-auto m-0 px-6 py-5">
-          <span dangerouslySetInnerHTML={
-            {__html:email.html}
-          }/>
+        <TabsContent
+          value="html"
+          className="flex-1 overflow-y-auto m-0 px-6 py-5"
+        >
+          <span
+            dangerouslySetInnerHTML={{
+              __html:
+                typeof email.html === 'string'
+                  ? email.html
+                  : email.textAsHtml || '',
+            }}
+          />
         </TabsContent>
-        <TabsContent value="json" className="flex-1 overflow-y-auto m-0 px-6 py-5">
+        <TabsContent
+          value="json"
+          className="flex-1 overflow-y-auto m-0 px-6 py-5"
+        >
           <pre className="text-xs text-gray-600 font-mono whitespace-pre-wrap bg-gray-50 rounded-md p-4 leading-relaxed">
             {JSON.stringify(email, null, 2)}
           </pre>
         </TabsContent>
-        
       </Tabs>
     </div>
   );
 }
-
